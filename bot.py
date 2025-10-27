@@ -1,3 +1,4 @@
+import urllib.request
 import os
 import telebot
 from bytez import Bytez
