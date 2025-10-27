@@ -31,7 +31,7 @@ except Exception as e:
 
 # Initialize Telegram Bot
 try:
-    bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
+    bot = telebot.TeleBot(BOT_TOKEN)
     # Test bot connection
     bot_info = bot.get_me()
     print(f"Bot '{bot_info.first_name}' (username: @{bot_info.username}) is connecting...")
