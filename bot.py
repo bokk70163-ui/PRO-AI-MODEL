@@ -78,14 +78,10 @@ def handle_all_text(message):
     except Exception as e:
         bot.reply_to(message, f"A critical error occurred: {e}")
         
-        # --- Webhook Routes ---
-@server.route('/' + BOT_TOKEN, methods=['POST'])
+        @server.route('/' + BOT_TOKEN, methods=['POST'])
 def webhook_update():
-    update = request.get_json()
-    if "message" in update:
-        handle_command(update["message"])
-    elif "callback_query" in update:
-        handle_callback(update["callback_query"])
+    update = telebot.types.Update.de_json(request.stream.read().decode("utf-8"))
+    bot.process_new_updates([update])
     return "ok", 200
 
 @server.route("/")
