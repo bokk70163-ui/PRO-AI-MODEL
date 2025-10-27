@@ -6,8 +6,8 @@ from flask import Flask, request
 # --- CONFIGURATION ---
 # As you requested, the API keys are here.
 # Replace these placeholder strings with your actual keys.
-BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
-API_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/"
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+API_URL = f"https://api.telegram.org/bot{BOT_TOKEN}/"
 user_data = {}
 
 BYTEZ_API_KEY = os.environ.get("BYTEZ_API_KEY")
@@ -78,7 +78,7 @@ def handle_all_text(message):
         bot.reply_to(message, f"A critical error occurred: {e}")
         
         # --- Webhook Routes ---
-@server.route('/' + TELEGRAM_BOT_TOKEN, methods=['POST'])
+@server.route('/' + BOT_TOKEN, methods=['POST'])
 def webhook_update():
     update = request.get_json()
     if "message" in update:
